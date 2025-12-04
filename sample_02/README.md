@@ -1,4 +1,4 @@
-# Deploy a portal service stack
+# Deploy a image service stack
 In this case we build a image and published our custom portal service stack to be deployed and scale.
 
 ## Build, push ans test your service
