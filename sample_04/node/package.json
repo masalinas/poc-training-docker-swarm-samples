@@ -1,13 +1,16 @@
 {
-    "name": "node",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "author": "Anand Mani Sankar",
-    "license": "ISC",
-    "dependencies": {
-      "express": "^4.18.2",
-      "mocha": "^10.2.0",
-      "redis": "^4.6.7"
-    }
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Miguel Salinas Gancedo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "redis": "^5.10.0"
   }
+}

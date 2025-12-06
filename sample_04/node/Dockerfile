@@ -1,24 +1,23 @@
-# Use official Node.js 20 LTS image
-FROM node:20
+FROM node:18-alpine
 
 # File Author / Maintainer
 LABEL maintainer="Miguel Salinas Gancedo"
 
-# Set working directory
-WORKDIR /src
+# Create app directory
+WORKDIR /app
 
-# Install nodemon globally
-RUN npm install -g nodemon
+# Install dependencies first (better caching)
+COPY package*.json ./
+RUN npm ci
 
-# Copy package.json and install dependencies
-COPY package.json /src/package.json
-RUN npm install
-
-# Copy the rest of the application code
-COPY . /src
+# Copy source code
+COPY ./src .
 
 # Expose port
-EXPOSE 8080
+EXPOSE 3000
 
-# Run app using nodemon
-CMD ["nodemon", "/src/index.js"]
+# Use non-root user for security
+USER node
+
+# Start the app
+CMD ["node", "index.js"]

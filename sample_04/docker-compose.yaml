@@ -2,6 +2,7 @@ version: "3"
 services:
   nginx:
     build: ./nginx
+    dockerfile: Dockerfile.standalone
     links:
       - node1:node1
       - node2:node2
