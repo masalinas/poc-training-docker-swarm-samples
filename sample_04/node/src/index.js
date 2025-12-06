@@ -6,7 +6,7 @@ const port = 3000;
 
 // Redis client
 const client = createClient({
-  url: "redis://node:6379"   // change if needed
+  url: "redis://redis:6379"
 });
 
 client.on("error", (err) => console.error("Redis Error:", err));
