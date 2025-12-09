@@ -7,7 +7,7 @@
 - Probar los dos servicios en local y ver que funcionan
 - Borrar recursos de docker locales para no dejar basura.
 - Crear un cluster de swarm o utilizar uno ya existente.
-- Modificar el servicio de compose para que pueda ser desplegado como stack en swarm. Escoger las replicas a usar
+- Modificar el servicio de compose para que pueda ser desplegado como stack en swarm. Escoger las replicas a usar dependiendo del compose creado.
 - Subir los recursos del servicio de stack al manager.
 - Desplegar el stack en swager
 - Probar que se puede acceder al mismo desde el navegador
