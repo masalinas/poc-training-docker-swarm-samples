@@ -91,6 +91,10 @@ Deploy a internal service registry inside the cluster and use it to deploy other
 
 - **STEP05:**: Deploy stack in swarm
 
-    ```
-    $ docker exec -it swarm-manager-share docker stack deploy --compose-file docker-compose.yaml stackdemo-stack
-    ```
+    At this time we will use Portainer to deploy the stack:
+    
+    ![Portainer Deploy Stack](./images/portainer_deploy_stack.png "Portainer Deploy Stack")    
+
+    Stack services
+    
+    ![Stack Tasks](./images/stack_tasks.png "Stack Tasks")    
