@@ -20,4 +20,8 @@ Some Docker Swarm samples
 
 - [Sample_05](./sample_05/README.md): 
 
-    Deploying a Busybox using a NFS shared volume in AWS EC2
+    Deploying a Busybox using a NFS shared volume in AWS EC2  
+
+- [Sample_06](./sample_06/README.md): 
+
+    Deploying in Docker Swarm Docker Service Registry to deploy new images 
