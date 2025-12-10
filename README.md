@@ -25,3 +25,7 @@ Some Docker Swarm samples
 - [Sample_06](./sample_06/README.md): 
 
     Deploying in Docker Swarm Docker Service Registry to deploy new images 
+
+- [Sample_07](./sample_07/README.md): 
+
+    Using configs and secrets in your stacks in Docker Swarm
