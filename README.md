@@ -29,3 +29,7 @@ Some Docker Swarm samples
 - [Sample_07](./sample_07/README.md): 
 
     Using configs and secrets in your stacks in Docker Swarm
+
+- [Sample_08](./sample_08/README.md): 
+
+    Rolling Updates and Rolling Back in Docker Swarm
