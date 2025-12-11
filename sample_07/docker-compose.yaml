@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   app:
-    image: myapp:latest
+    image: sample-07:latest
     deploy:
       replicas: 1
     configs:
