@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  web:
+    image: ofertoio/my-web-replica:1.0.0
+
+    deploy:
+      replicas: 3
+
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        order: start-first
+
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:80"
