@@ -1,9 +1,9 @@
 # Description
-Use a NFS volume between several tasks in Docker Swarm
+Use a NFS volume between several tasks in Docker Swarm. Deploy Docker Swarm in EC2
 
-## Deploy Docker Swarm in EC2
+## Steps
 
-- **STEP01:** Install NFS Server
+- **STEP_01:** Install NFS Server
     
     We must create a new micro VM to be shared between several services and will install the `nfs-kernel-server` a kernel modules to implement the protocol nfs and execute a server in default port 2049
 
@@ -31,7 +31,7 @@ Use a NFS volume between several tasks in Docker Swarm
     $ sudo systemctl enable --now nfs-kernel-server
     ```
 
-- **STEP-02:** Install NFS Clients
+- **STEP_02:** Install NFS Clients
 
     Now we must install in each cluster Swarm node the NFS Client `nfs-common` and mount the remote volume from NFS Server
     
@@ -57,7 +57,7 @@ Use a NFS volume between several tasks in Docker Swarm
     AWS NFS Shared folder architecture
     ![AWS NFS Architecture](./images/aws_nfs_folder.png "AWS NFS Architecture")    
 
-- **STEP-03:** Execute stack from manager node
+- **STEP_03:** Execute stack from manager node
 
     ```
     $ docker stack deploy -d -c ./docker-compose.yaml shared-volume-stack

@@ -1,83 +1,86 @@
 # Description
 In this case we build a image and published our custom portal service stack to be deployed and scale.
 
-## Build, push ans test your service
-From host build, push and test your service
-```
-$ docker build -t my-web-replica .
-$ docker tag my-web-replica ofertoio/my-web-replica
-$ docker push ofertoio/my-web-replica
-$ docker run --rm -p 8095:80 my-web-replica 
-```
+## Steps
 
-## Upload the service satck to cluster
-Upload service stack to manager node
-```
-$ docker exec -it swarm-manager mkdir /sample_02
-$ docker cp docker-compose.yaml swarm-manager:/sample_02
-```
+- **STEP_01:**: Build, push ans test your service
 
-## Execute service stack
-From manager node deploye the service stack
-```
-$ docker exec -it swarm-manager docker stack deploy -d -c /sample_02/docker-compose.yaml my-web-replica
-Creating network mmy-web-replica_default
-Creating service my-web-replica_nginx
-```
+    From host build, push and test your service
+    ```
+    $ docker build -t my-web-replica .
+    $ docker tag my-web-replica ofertoio/my-web-replica
+    $ docker push ofertoio/my-web-replica
+    $ docker run --rm -p 8095:80 my-web-replica 
+    ```
 
-## Check service stack
-From manager node check the service stack
+- **STEP_02:**: Upload the service satck to cluster
+    Upload service stack to manager node
+    ```
+    $ docker exec -it swarm-manager mkdir /sample_02
+    $ docker cp docker-compose.yaml swarm-manager:/sample_02
+    ```
 
-```
-$ docker exec -it swarm-manager docker stack ls
-NAME      SERVICES
-my-web-replica   1
+- **STEP_03:**: Execute service stack
+    From manager node deploye the service stack
+    ```
+    $ docker exec -it swarm-manager docker stack deploy -d -c /sample_02/docker-compose.yaml my-web-replica
+    Creating network mmy-web-replica_default
+    Creating service my-web-replica_nginx
+    ```
 
-$ docker exec -it swarm-manager docker stack services my-web-replica
-ID             NAME           MODE         REPLICAS   IMAGE          PORTS
-p61wzqkkbrlx   my-web-replica_nginx   replicated   1/1        nginx:latest   *:8095->80/tcp
+- **STEP_04:** Check service stack
+    From manager node check the service stack
 
-$ docker exec -it swarm-manager docker service ps my-web-replica_nginx
-ID             NAME                     IMAGE                            NODE           DESIRED STATE   CURRENT STATE           ERROR     PORTS
-z6zlxjq92s4g   my-web-replica_nginx.1   ofertoio/my-web-replica:latest   e5a5ef6cc0ad   Running         Running 7 minutes ago             
-h2br4xpr0eoj   my-web-replica_nginx.2   ofertoio/my-web-replica:latest   e5866becc3cf   Running         Running 6 minutes ago 
-```
+    ```
+    $ docker exec -it swarm-manager docker stack ls
+    NAME      SERVICES
+    my-web-replica   1
 
-## Check tasks and resources
-We can get inspect each task from manager node
-```
-docker exec -it swarm-manager docker inspect z6zlxjq92s4g
-docker exec -it swarm-manager docker inspect h2br4xpr0eoj
-```
+    $ docker exec -it swarm-manager docker stack services my-web-replica
+    ID             NAME           MODE         REPLICAS   IMAGE          PORTS
+    p61wzqkkbrlx   my-web-replica_nginx   replicated   1/1        nginx:latest   *:8095->80/tcp
 
-We can get the index value from each node
-```
-docker exec -it swarm-worker1 docker exec -it 3a9edb9dbeae cat /usr/share/nginx/html/index.html
-docker exec -it swarm-worker2 docker exec -it 3a9edb9dbeae cat /usr/share/nginx/html/index.html
-```
+    $ docker exec -it swarm-manager docker service ps my-web-replica_nginx
+    ID             NAME                     IMAGE                            NODE           DESIRED STATE   CURRENT STATE           ERROR     PORTS
+    z6zlxjq92s4g   my-web-replica_nginx.1   ofertoio/my-web-replica:latest   e5a5ef6cc0ad   Running         Running 7 minutes ago             
+    h2br4xpr0eoj   my-web-replica_nginx.2   ofertoio/my-web-replica:latest   e5866becc3cf   Running         Running 6 minutes ago 
+    ```
 
-## Load the portal
-Open your browser and load the portal from any node of the cluster
+- **STEP_05:** Check tasks and resources
+    We can get inspect each task from manager node:
+    ```
+    docker exec -it swarm-manager docker inspect z6zlxjq92s4g
+    docker exec -it swarm-manager docker inspect h2br4xpr0eoj
+    ```
 
-```
-http://192.168.49.2:8095/
-```
+    We can get the index value from each node:
+    ```
+    docker exec -it swarm-worker1 docker exec -it 3a9edb9dbeae cat /usr/share/nginx/html/index.html
+    docker exec -it swarm-worker2 docker exec -it 3a9edb9dbeae cat /usr/share/nginx/html/index.html
+    ```
 
-## Scale service stack
-From manager node scale service stack
+- **STEP_05:**: Load the portal
+    Open your browser and load the portal from any node of the cluster
 
-```
-$ docker exec -it swarm-manager docker service scale my-web-replica_nginx=2
-my-web_nginx scaled to 2
-overall progress: 2 out of 2 tasks 
-1/2: running   [==================================================>] 
-2/2: running   [==================================================>] 
-verify: Service my-web-replica_nginx converged 
-```
+    ```
+    http://192.168.49.2:8095/
+    ```
 
-## Remove the service stack
-From manager node remove service stack
+- **STEP_05:**: Scale service stack
+    From manager node scale service stack
 
-```
-$ docker exec -it swarm-manager docker stack rm my-web-replica
-```
+    ```
+    $ docker exec -it swarm-manager docker service scale my-web-replica_nginx=2
+    my-web_nginx scaled to 2
+    overall progress: 2 out of 2 tasks 
+    1/2: running   [==================================================>] 
+    2/2: running   [==================================================>] 
+    verify: Service my-web-replica_nginx converged 
+    ```
+
+- **STEP_05:** Remove the service stack
+    From manager node remove service stack
+
+    ```
+    $ docker exec -it swarm-manager docker stack rm my-web-replica
+    ```

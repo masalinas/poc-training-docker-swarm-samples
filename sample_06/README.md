@@ -1,9 +1,9 @@
 # Description
 Deploy a internal service registry inside the cluster and use it to deploy other services
 
-## Steps to be followed
+## Steps
 
-- **STEP01:**  Deploy Docker Service Registry v2
+- **STEP_01:**  Deploy Docker Service Registry v2
 
     Firts we will depploy the Docker Service Registry basic without any security, from manager node:
 
@@ -18,7 +18,7 @@ Deploy a internal service registry inside the cluster and use it to deploy other
     {}
     ```
 
-- **STEP02:** Reconfigure docker daemon 
+- **STEP_02:** Reconfigure docker daemon 
     
     We must configure our host docker engine to use not https service registry connection.
 
@@ -40,7 +40,7 @@ Deploy a internal service registry inside the cluster and use it to deploy other
     $ sudo systemctl restart docker
     ```
 
-- **STEP03:**  Test the app locally compose
+- **STEP_03:**  Test the app locally compose
 
     If you don't have virtual env for Python 3.8 install like this:
 
@@ -66,7 +66,7 @@ Deploy a internal service registry inside the cluster and use it to deploy other
     http://localhost:8001
     ```
 
-- **STEP04:**: Push inage to Docker Registry
+- **STEP_04:**: Push inage to Docker Registry
 
     Push image to Docker registry in swarm
     ```
@@ -89,7 +89,7 @@ Deploy a internal service registry inside the cluster and use it to deploy other
     {"repositories":["stackdemo"]}
     ```
 
-- **STEP05:**: Deploy stack in swarm
+- **STEP_05:**: Deploy stack in swarm
 
     At this time we will use Portainer to deploy the stack:
     
